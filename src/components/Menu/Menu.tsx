@@ -1,0 +1,52 @@
+import React, {createContext, useState}from 'react';
+import classnnames from 'classnames';
+type menuMode = 'horizontal' | 'vertical'
+type onSelect = (selectIndex:number)=>void
+interface MenuProps{
+    defaultIndex?:number;
+    classNames?:string;
+    mode?:menuMode;
+    onSelect?:onSelect;
+    style?:React.CSSProperties;
+}
+interface iMenuConText {
+  index:number;
+  onSelect?:onSelect;
+}
+export const MenuContext = createContext<iMenuConText>({index:0})
+const Menu:React.FC<MenuProps> = (props)=>{
+  const {
+    defaultIndex,
+    classNames,
+    mode,
+    onSelect,
+    style,
+    children
+  } = props
+  const classess = classnnames('gv-menu',classNames,{
+      'menu-vertical':mode === 'vertical'
+  })
+  const [current, setcurrent] = useState(defaultIndex);
+  const handleClick = (index:number) =>{
+    setcurrent(index);
+    if(onSelect){
+        onSelect(index)
+    }
+  }
+  const passedContext :iMenuConText = {
+    index:current? current : 0,
+    onSelect:handleClick
+  }
+  return(
+      <ul className={classess}>
+          <MenuContext.Provider value={passedContext}>
+      {children}
+      </MenuContext.Provider>
+      </ul>
+  )
+}
+Menu.defaultProps = {
+  defaultIndex:0,
+  mode:'horizontal' 
+}
+export default Menu;
