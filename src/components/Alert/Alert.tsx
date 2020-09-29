@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import classnames from 'classnames'
 interface AlertProps{
-    type:string,
-    message:string,
-    closable?:boolean,
-    onClose?:()=>void,
-    icon?:boolean,
+    type:string, // 警告框类型
+    message:string, // 警告框内容
+    closable?:boolean, // 是否开启关闭按钮
+    onClose?:()=>void,  // 关闭回调函数
+    icon?:boolean,   // 是否显示icon
 }
 type AlertDivProps = React.HTMLAttributes<HTMLElement> & AlertProps;
 const Alert:React.FC<AlertDivProps> = (props)=>{ 

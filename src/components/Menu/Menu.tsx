@@ -4,11 +4,11 @@ import  {MenuItemProps}  from './MenuItem'
 type menuMode = 'horizontal' | 'vertical'
 type onSelect = (selectIndex:number)=>void
 interface MenuProps{
-    defaultIndex?:number;
-    classNames?:string;
-    mode?:menuMode;
-    onSelect?:onSelect;
-    style?:React.CSSProperties;
+    defaultIndex?:number; // 默认选中的序号
+    classNames?:string;   //用户自定义类名
+    mode?:menuMode;       // 显示类型
+    onSelect?:onSelect;   // 选中执行回调
+    style?:React.CSSProperties; 
 }
 interface iMenuConText {
   index?:number;
@@ -37,14 +37,13 @@ const Menu:React.FC<MenuProps> = (props)=>{
   const passedContext :iMenuConText = {
     index:current? current : 0,
     onSelect:handleClick
+    
   }
   const renderChild = ()=> {
     return React.Children.map(children,(child,index)=>{
         const childElement =  child as React.FunctionComponentElement<MenuItemProps>;
         const { name } = childElement.type;
-        if(name === 'MenuItem'){
-            console.log(index);
-            
+        if(name === 'MenuItem'){       
             return React.cloneElement(childElement,{
                 index
             });

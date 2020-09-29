@@ -21,12 +21,15 @@
             cursor: default;
             color: $menu-item-disabled-color;
         }
-        &.is-active,
+        &.is-active ,
         &:hover{
             color: $menu-item-active-color !important;
             border-bottom: $menu-item-active-border-width solid $menu-item-active-color ;
         }
     }
+    // a{
+    //     color: $black;
+    // }
 }
 
 .menu-vertical{
