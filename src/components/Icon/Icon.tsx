@@ -1,7 +1,7 @@
 import React from 'react'
 import classnames from 'classnames'
 import { FontAwesomeIcon, FontAwesomeIconProps } from '@fortawesome/react-fontawesome'
-// fontawersome图标图
+// // fontawersome图标图
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 // 添加所有图标
@@ -10,7 +10,7 @@ interface IconProps extends FontAwesomeIconProps {
     theme?:string,
     className?:string
 }
-const Icon:React.FC<IconProps> = (props) =>{
+export const Icon:React.FC<IconProps> = (props) =>{
     const {
         theme,
         className,
